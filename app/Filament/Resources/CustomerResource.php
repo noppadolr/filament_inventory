@@ -19,8 +19,10 @@ class CustomerResource extends Resource
     protected static ?string $model = Customer::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-users';
+    protected static ?int $navigationSort=2;
     protected static  ?string $navigationGroup="Manage";
     protected static  ?string $navigationLabel="Manage Customers";
+
 
     public static function form(Form $form): Form
     {
@@ -103,9 +105,10 @@ class CustomerResource extends Resource
             ])
             ->actions([
                 ActionGroup::make([
+
+                    Tables\Actions\ViewAction::make(),
                     Tables\Actions\EditAction::make(),
                     Tables\Actions\DeleteAction::make(),
-                    Tables\Actions\ViewAction::make(),
                 ])
             ])
             ->bulkActions([
