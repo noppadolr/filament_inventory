@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\Category;
 use App\Models\Customer;
 use App\Models\Supplier;
 use App\Models\Unit;
@@ -52,6 +53,12 @@ class AppServiceProvider extends ServiceProvider
         });
         Supplier::updating(function ($supplier){
             $supplier->updated_at =Carbon::now();
+        });
+        Category::updating(function ($category){
+            $category->updated_by=auth()->id();
+        });
+        Category::creating(function ($category){
+            $category->created_by=auth()->id();
         });
     }
 }
